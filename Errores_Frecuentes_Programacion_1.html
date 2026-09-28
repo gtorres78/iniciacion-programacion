@@ -1,0 +1,568 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Análisis de Iniciación a la Programación 2026-27 — Temas 3a, 3b y 3c</title>
+<style>
+:root {
+  --bg: #f6f8fb;
+  --card: #ffffff;
+  --text: #1f2937;
+  --muted: #5f6b7a;
+  --accent: #1f4e78;
+  --accent-soft: #eaf2f8;
+  --border: #d9e2ec;
+  --code-bg: #17202a;
+  --code-text: #f4f7fa;
+  --quote-bg: #fff8df;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+  line-height: 1.65;
+  color: var(--text);
+  background: var(--bg);
+}
+.hero {
+  background: linear-gradient(135deg, #173b5d, #2b648f);
+  color: white;
+  padding: 64px 24px 58px;
+}
+.hero-inner {
+  max-width: 980px;
+  margin: 0 auto;
+}
+.hero h1 {
+  margin: 0 0 8px;
+  font-size: clamp(2rem, 5vw, 3.3rem);
+  line-height: 1.08;
+}
+.hero h2 {
+  margin: 0;
+  font-weight: 500;
+  opacity: .92;
+}
+.author {
+  margin-top: 62px;
+}
+.author h3 {
+  margin: 0;
+  font-size: 1.25rem;
+}
+.author p {
+  margin: 2px 0 0;
+  opacity: .85;
+}
+.layout {
+  max-width: 1220px;
+  margin: 0 auto;
+  padding: 28px 20px 64px;
+  display: grid;
+  grid-template-columns: 280px minmax(0, 1fr);
+  gap: 28px;
+}
+nav {
+  position: sticky;
+  top: 18px;
+  align-self: start;
+  max-height: calc(100vh - 36px);
+  overflow: auto;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 18px 18px 14px;
+}
+nav h2 {
+  margin: 0 0 10px;
+  font-size: 1rem;
+  color: var(--accent);
+}
+nav ol {
+  margin: 0;
+  padding-left: 22px;
+}
+nav li {
+  margin: 6px 0;
+}
+nav a {
+  color: #334e68;
+  text-decoration: none;
+}
+nav a:hover { color: var(--accent); text-decoration: underline; }
+main {
+  min-width: 0;
+}
+.content-section {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 30px 34px;
+  margin-bottom: 24px;
+  box-shadow: 0 2px 8px rgba(31, 78, 120, 0.06);
+}
+.content-section > h2 {
+  margin-top: 0;
+  color: var(--accent);
+  font-size: 1.7rem;
+  line-height: 1.25;
+}
+.content-section h3 {
+  margin-top: 1.6rem;
+  color: #304d66;
+}
+p { margin: .8em 0; }
+pre {
+  background: var(--code-bg);
+  color: var(--code-text);
+  padding: 16px 18px;
+  border-radius: 10px;
+  overflow-x: auto;
+  line-height: 1.45;
+}
+code {
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+}
+p code, li code, blockquote code, td code {
+  background: #eef2f6;
+  border: 1px solid #d8e0e8;
+  padding: 1px 5px;
+  border-radius: 5px;
+  color: #9b1c31;
+}
+blockquote {
+  margin: 18px 0;
+  padding: 13px 18px;
+  border-left: 5px solid #d9a928;
+  background: var(--quote-bg);
+  border-radius: 0 8px 8px 0;
+}
+hr {
+  border: 0;
+  border-top: 1px solid var(--border);
+  margin: 28px 0;
+}
+.table-wrap {
+  overflow-x: auto;
+  margin: 18px 0;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 480px;
+}
+th, td {
+  border: 1px solid var(--border);
+  padding: 10px 12px;
+  text-align: left;
+}
+th {
+  background: var(--accent-soft);
+  color: #264b68;
+}
+ol, ul { padding-left: 1.5rem; }
+.formula {
+  text-align: center;
+  padding: 10px;
+  font-family: Georgia, serif;
+  font-size: 1.08rem;
+}
+.back-top {
+  display: inline-block;
+  margin-top: 12px;
+  font-size: .92rem;
+  color: var(--accent);
+  text-decoration: none;
+}
+footer {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 10px 20px 40px;
+  color: var(--muted);
+  text-align: center;
+  font-size: .9rem;
+}
+@media (max-width: 860px) {
+  .layout { grid-template-columns: 1fr; }
+  nav { position: static; max-height: none; }
+  .content-section { padding: 24px 20px; }
+  .hero { padding: 44px 20px; }
+  .author { margin-top: 38px; }
+}
+@media print {
+  body { background: white; }
+  nav { display: none; }
+  .layout { display: block; max-width: none; padding: 0; }
+  .content-section { box-shadow: none; border: none; page-break-inside: avoid; }
+  .hero { background: white; color: black; padding: 20px 0 40px; }
+}
+
+.math-expression {
+  text-align: center;
+  margin: 18px 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.25rem;
+}
+.fraction {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: stretch;
+  vertical-align: middle;
+  text-align: center;
+  line-height: 1.15;
+}
+.fraction .numerator {
+  padding: 0 0.45em 0.18em;
+  border-bottom: 1.5px solid currentColor;
+}
+.fraction .denominator {
+  padding: 0.18em 0.45em 0;
+}
+
+</style>
+</head>
+<body id="top">
+
+<header class="hero">
+  <div class="hero-inner">
+    <h1>Análisis de Iniciación a la Programación 2026-27</h1>
+    <h2>Temas 3a, 3b y 3c.</h2>
+
+    <div class="author">
+      <h3>Guillermo Torres</h3>
+      <p>29 de septiembre de 2026</p>
+    </div>
+  </div>
+</header>
+
+<div class="layout">
+  <nav aria-label="Índice">
+    <h2>Contenido</h2>
+    <ol>
+      <li><a href='#errores-frecuentes-de-programacion'>Errores frecuentes de programación</a></li><li><a href='#1-tipos-y-representacion-de-datos'>1. Tipos y representación de datos</a></li><li><a href='#2-expresiones-aritmeticas-y-traduccion-de-formulas'>2. Expresiones aritméticas y traducción de fórmulas</a></li><li><a href='#3-composicion-booleana'>3. Composición booleana</a></li><li><a href='#4-limites-y-casos-frontera'>4. Límites y casos frontera</a></li><li><a href='#5-control-condicional-y-seleccion-de-casos'>5. Control condicional y selección de casos</a></li><li><a href='#6-division-entera-modulo-y-divisibilidad'>6. División entera, módulo y divisibilidad</a></li><li><a href='#7-control-del-bucle-inicializacion-condicion-y-actualizacion'>7. Control del bucle: inicialización, condición y actualización</a></li><li><a href='#8-contadores-y-acumuladores'>8. Contadores y acumuladores</a></li><li><a href='#9-estado-y-procesamiento-de-secuencias'>9. Estado y procesamiento de secuencias</a></li><li><a href='#10-centinelas-y-terminacion'>10. Centinelas y terminación</a></li><li><a href='#11-modelizacion-y-descomposicion-computacional'>11. Modelización y descomposición computacional</a></li><li><a href='#una-estrategia-comun-para-todos-los-ejercicios'>Una estrategia común para todos los ejercicios</a></li><li><a href='#idea-final'>Idea final</a></li>
+    </ol>
+  </nav>
+
+  <main>
+    <section id='errores-frecuentes-de-programacion' class='content-section intro-section'><h2>Errores frecuentes de programación</h2><p>Esta guía recoge errores que pueden aparecer repetidamente a lo largo del curso.</p>
+<p>El objetivo no es memorizar soluciones, sino aprender a reconocer <strong>patrones de error</strong> que vuelven a aparecer cuando los problemas se hacen más complejos.</p>
+<p>Antes de modificar el código, intenta siempre responder:</p>
+<ol>
+<li>¿Qué debería hacer el programa?</li>
+<li>¿Qué está haciendo realmente?</li>
+<li>¿Qué valores tienen mis variables?</li>
+<li>¿De qué tipo son?</li>
+<li>¿Qué condición o cálculo no representa correctamente el problema?</li>
+<li>¿Qué caso de test permite comprobar mi hipótesis?</li>
+</ol>
+<hr></section><section id='1-tipos-y-representacion-de-datos' class='content-section'><h2>1. Tipos y representación de datos</h2><h3>Error frecuente</h3>
+<p>Olvidar que <code>input()</code> devuelve un <code>str</code>.</p>
+<pre><code class="language-python">edat = input()
+resultat = 2026 - edat</code></pre>
+<p>Aunque el usuario escriba:</p>
+<pre><code class="language-text">2000</code></pre>
+<p>Python recibe:</p>
+<pre><code class="language-python">&quot;2000&quot;</code></pre>
+<p>No:</p>
+<pre><code class="language-python">2000</code></pre>
+<h3>Corrección</h3>
+<pre><code class="language-python">edat = int(input())
+resultat = 2026 - edat</code></pre>
+<h3>Este problema puede reaparecer más adelante</h3>
+<p>Por ejemplo:</p>
+<pre><code class="language-python">opcio = input()
+
+if opcio == 1:
+    ...</code></pre>
+<p>Aquí:</p>
+<pre><code class="language-python">opcio == &quot;1&quot;</code></pre>
+<p>pero estamos comparándolo con:</p>
+<pre><code class="language-python">1</code></pre>
+<h3>Pregunta para depurar</h3>
+<blockquote>¿Qué valor tiene la variable y de qué tipo es?</blockquote>
+<hr></section><section id='2-expresiones-aritmeticas-y-traduccion-de-formulas' class='content-section'><h2>2. Expresiones aritméticas y traducción de fórmulas</h2><h3>Error frecuente</h3>
+<p>Conocer las operaciones, pero traducir incorrectamente la fórmula.</p>
+<p>Por ejemplo, queremos calcular:</p>
+<div class='formula'></div>
+<div class="formula math-expression" aria-label="(1 + 4 - x) dividido por 3 por (x + 3)">
+  <span class="fraction">
+    <span class="numerator">1 + 4 − x</span>
+    <span class="denominator">3(x + 3)</span>
+  </span>
+</div>
+
+<p>Una traducción incorrecta podría ser:</p>
+<pre><code class="language-python">(1 + 4 - x) / 3 * (x + 3)</code></pre>
+<p>Python interpreta las operaciones en un orden determinado.</p>
+<p>La expresión correcta sería:</p>
+<pre><code class="language-python">(1 + 4 - x) / (3 * (x + 3))</code></pre>
+<h3>Antes de programar</h3>
+<p>Escribe primero la fórmula con paréntesis.</p>
+<p>Después tradúcela a Python.</p>
+<h3>Pregunta para depurar</h3>
+<blockquote>¿Mi expresión Python representa exactamente la fórmula del enunciado?</blockquote>
+<hr></section><section id='3-composicion-booleana' class='content-section'><h2>3. Composición booleana</h2><h3>Error frecuente</h3>
+<p>Comprobar por separado condiciones que realmente forman una única condición lógica.</p>
+<p>Queremos:</p>
+<blockquote><code>x</code> e <code>y</code> deben estar entre 0 y 10.</blockquote>
+<p>Una forma problemática:</p>
+<pre><code class="language-python">if x &lt;= 0:
+    print(False)
+
+if x &gt;= 10:
+    print(False)
+
+if y &lt;= 0:
+    print(False)
+
+if y &gt;= 10:
+    print(False)
+else:
+    print(True)</code></pre>
+<p>El <code>else</code> pertenece únicamente al último <code>if</code>.</p>
+<h3>Primero construimos la condición</h3>
+<pre><code class="language-text">x está dentro
+AND
+y está dentro</code></pre>
+<p>Después:</p>
+<pre><code class="language-python">x &gt; 0 and x &lt; 10 and y &gt; 0 and y &lt; 10</code></pre>
+<p>Y finalmente:</p>
+<pre><code class="language-python">if x &gt; 0 and x &lt; 10 and y &gt; 0 and y &lt; 10:
+    print(True)
+else:
+    print(False)</code></pre>
+<h3>Pregunta para depurar</h3>
+<blockquote>¿Puedo escribir primero, en una sola expresión, qué significa que el caso sea verdadero?</blockquote>
+<hr></section><section id='4-limites-y-casos-frontera' class='content-section'><h2>4. Límites y casos frontera</h2><p>Muchos errores aparecen exactamente en los límites.</p>
+<p>Por ejemplo:</p>
+<pre><code class="language-python">x &gt; 10</code></pre>
+<p>no significa lo mismo que:</p>
+<pre><code class="language-python">x &gt;= 10</code></pre>
+<p>Si tenemos:</p>
+<pre><code class="language-python">if import_final &gt; 500:</code></pre>
+<p>debemos preguntarnos qué ocurre con:</p>
+<pre><code class="language-text">499.99
+500
+500.01</code></pre>
+<h3>Los mejores tests suelen estar alrededor del límite</h3>
+<p>Si el límite es <code>10</code>, prueba:</p>
+<pre><code class="language-text">9
+10
+11</code></pre>
+<p>Si el límite es <code>500</code>, prueba:</p>
+<pre><code class="language-text">499.99
+500
+500.01</code></pre>
+<h3>Pregunta para depurar</h3>
+<blockquote>¿Qué ocurre justo antes, exactamente en y justo después del límite?</blockquote>
+<hr></section><section id='5-control-condicional-y-seleccion-de-casos' class='content-section'><h2>5. Control condicional y selección de casos</h2><h3>Error frecuente</h3>
+<p>Ordenar incorrectamente condiciones que se solapan.</p>
+<p>Por ejemplo:</p>
+<pre><code class="language-python">if preu &gt; 500:
+    descompte = 5
+
+elif preu &gt; 1000:
+    descompte = 10</code></pre>
+<p>Para:</p>
+<pre><code class="language-text">preu = 1200</code></pre>
+<p>la primera condición ya es verdadera:</p>
+<pre><code class="language-python">1200 &gt; 500</code></pre>
+<p>Por tanto, Python no llega al <code>elif</code>.</p>
+<h3>Una posible solución</h3>
+<pre><code class="language-python">if preu &gt; 1000:
+    descompte = 10
+
+elif preu &gt; 500:
+    descompte = 5</code></pre>
+<h3>Pregunta para depurar</h3>
+<blockquote>¿Puede una condición anterior capturar también los casos de una condición posterior?</blockquote>
+<hr></section><section id='6-division-entera-modulo-y-divisibilidad' class='content-section'><h2>6. División entera, módulo y divisibilidad</h2><h3>Error frecuente</h3>
+<p>Confundir eliminar cifras con extraer una cifra.</p>
+<p>Queremos obtener la cifra de las unidades de millar de:</p>
+<pre><code class="language-text">26477</code></pre>
+<p>Hacer:</p>
+<pre><code class="language-python">26477 // 1000</code></pre>
+<p>produce:</p>
+<pre><code class="language-text">26</code></pre>
+<p>Eso elimina las tres últimas cifras, pero todavía no hemos aislado la cifra deseada.</p>
+<p>Necesitamos:</p>
+<pre><code class="language-python">(26477 // 1000) % 10</code></pre>
+<p>Resultado:</p>
+<pre><code class="language-text">6</code></pre>
+<h3>Idea importante</h3>
+<p>Los operadores pueden ser correctos y, aun así, la <strong>composición de operaciones</strong> puede no resolver el problema.</p>
+<h3>Pregunta para depurar</h3>
+<blockquote>¿Qué transformación produce cada operación y qué información me falta todavía?</blockquote>
+<hr></section><section id='7-control-del-bucle-inicializacion-condicion-y-actualizacion' class='content-section'><h2>7. Control del bucle: inicialización, condición y actualización</h2><p>Todo bucle tiene al menos tres elementos fundamentales:</p>
+<pre><code class="language-text">INICIALIZACIÓN
+      ↓
+CONDICIÓN
+      ↓
+ACTUALIZACIÓN</code></pre>
+<p>Por ejemplo:</p>
+<pre><code class="language-python">i = 0
+
+while i &lt; 10:
+    print(i)
+    i = i + 1</code></pre>
+<h3>Error frecuente</h3>
+<p>Olvidar actualizar la variable:</p>
+<pre><code class="language-python">i = 0
+
+while i &lt; 10:
+    print(i)</code></pre>
+<p>La condición:</p>
+<pre><code class="language-python">i &lt; 10</code></pre>
+<p>siempre continuará siendo verdadera.</p>
+<h3>Pregunta para depurar</h3>
+<blockquote>¿Qué variable hace que el bucle avance hacia su final?</blockquote>
+<hr></section><section id='8-contadores-y-acumuladores' class='content-section'><h2>8. Contadores y acumuladores</h2><p>No cumplen la misma función.</p>
+<h3>Contador</h3>
+<p>Cuenta cuántas veces ocurre algo:</p>
+<pre><code class="language-python">comptador = 0
+
+comptador = comptador + 1</code></pre>
+<h3>Acumulador</h3>
+<p>Conserva un resultado parcial:</p>
+<pre><code class="language-python">suma = 0
+
+suma = suma + valor</code></pre>
+<p>Para productos suele inicializarse en:</p>
+<pre><code class="language-python">producte = 1</code></pre>
+<p>no en:</p>
+<pre><code class="language-python">producte = 0</code></pre>
+<p>porque:</p>
+<pre><code class="language-text">0 × cualquier número = 0</code></pre>
+<h3>Pregunta para depurar</h3>
+<blockquote>¿Esta variable cuenta elementos o acumula un resultado?</blockquote>
+<hr></section><section id='9-estado-y-procesamiento-de-secuencias' class='content-section'><h2>9. Estado y procesamiento de secuencias</h2><p>En algunos problemas necesitamos recordar información de valores anteriores.</p>
+<p>Por ejemplo, para buscar máximo y mínimo:</p>
+<pre><code class="language-python">maxim = primer_valor
+minim = primer_valor</code></pre>
+<p>Después, para cada nuevo valor:</p>
+<pre><code class="language-python">if valor &gt; maxim:
+    maxim = valor
+
+if valor &lt; minim:
+    minim = valor</code></pre>
+<p><code>maxim</code> y <code>minim</code> representan el <strong>estado actual del algoritmo</strong>.</p>
+<h3>Error frecuente</h3>
+<p>Actualizar incorrectamente una variable o perder la información acumulada.</p>
+<h3>Técnica útil</h3>
+<p>Haz una tabla:</p>
+<div class='table-wrap'><table><thead><tr><th>valor</th><th>máximo</th><th>mínimo</th></tr></thead><tbody>
+<tr><td>8</td><td>8</td><td>8</td></tr>
+<tr><td>3</td><td>8</td><td>3</td></tr>
+<tr><td>12</td><td>12</td><td>3</td></tr>
+</tbody></table></div>
+<h3>Pregunta para depurar</h3>
+<blockquote>¿Qué información del pasado necesito conservar para procesar el siguiente valor?</blockquote>
+<hr></section><section id='10-centinelas-y-terminacion' class='content-section'><h2>10. Centinelas y terminación</h2><p>Un valor centinela indica que debemos dejar de leer datos.</p>
+<p>Por ejemplo:</p>
+<pre><code class="language-text">-1</code></pre>
+<p>puede significar:</p>
+<blockquote>terminar la secuencia.</blockquote>
+<h3>Error frecuente</h3>
+<p>Procesar el centinela como si fuera un dato.</p>
+<p>Entrada:</p>
+<pre><code class="language-text">8
+3
+-1</code></pre>
+<p>Si hacemos:</p>
+<pre><code class="language-python">if num &lt; minim:
+    minim = num</code></pre>
+<p>antes de comprobar el final, podemos terminar con:</p>
+<pre><code class="language-text">mínimo = -1</code></pre>
+<p>aunque <code>-1</code> no pertenece a la secuencia.</p>
+<h3>Patrón recomendado</h3>
+<pre><code class="language-text">LEER
+ ↓
+VALIDAR
+ ↓
+PROCESAR
+ ↓
+ACTUALIZAR
+ ↓
+REPETIR</code></pre>
+<h3>Pregunta para depurar</h3>
+<blockquote>¿El valor que acabo de leer es un dato que debo procesar o una señal para terminar?</blockquote>
+<hr></section><section id='11-modelizacion-y-descomposicion-computacional' class='content-section'><h2>11. Modelización y descomposición computacional</h2><p>Este es uno de los errores más importantes porque aparece en muchos ejercicios diferentes.</p>
+<h3>Error frecuente</h3>
+<p>Empezar a escribir Python antes de haber diseñado la solución.</p>
+<p>Antes del código:</p>
+<pre><code class="language-text">ENUNCIADO
+    ↓
+ENTRADAS
+    ↓
+SALIDA
+    ↓
+CASOS / TRANSFORMACIONES
+    ↓
+TESTS
+    ↓
+CÓDIGO</code></pre>
+<p>Por ejemplo:</p>
+<blockquote>obtener la cifra de las centenas de 5837.</blockquote>
+<p>Antes de Python:</p>
+<pre><code class="language-text">5837
+ ↓
+eliminar dos cifras
+58
+ ↓
+quedarme con la última cifra
+8</code></pre>
+<p>Después:</p>
+<pre><code class="language-python">centenes = (nombre // 100) % 10</code></pre>
+<h3>Pregunta para depurar</h3>
+<blockquote>¿Puedo explicar la solución sin utilizar todavía Python?</blockquote>
+<p>Si no puedes hacerlo, probablemente todavía no has terminado de diseñar el algoritmo.</p>
+<hr></section><section id='una-estrategia-comun-para-todos-los-ejercicios' class='content-section'><h2>Una estrategia común para todos los ejercicios</h2><p>Antes de pulsar <code>Evaluate</code>:</p>
+<ol>
+<li><strong>Comprende el enunciado.</strong></li>
+<li>Identifica input y output.</li>
+<li>Diseña el algoritmo.</li>
+<li>Identifica los tipos de las variables.</li>
+<li>Identifica condiciones y casos frontera.</li>
+<li>Si hay un bucle, identifica su estado y su condición de parada.</li>
+<li>Construye casos de test.</li>
+<li>Predice manualmente el resultado.</li>
+<li>Ejecuta.</li>
+<li>Si falla, formula una hipótesis antes de modificar el código.</li>
+</ol>
+<p>La secuencia debería ser:</p>
+<pre><code class="language-text">PREDIGO
+   ↓
+EJECUTO
+   ↓
+OBSERVO
+   ↓
+EXPLICO
+   ↓
+MODIFICO</code></pre>
+<p>No:</p>
+<pre><code class="language-text">MODIFICO
+   ↓
+EVALUATE
+   ↓
+MODIFICO
+   ↓
+EVALUATE
+   ↓
+MODIFICO...</code></pre>
+<hr></section><section id='idea-final' class='content-section'><h2>Idea final</h2><p>Un error no es únicamente algo que hay que eliminar.</p>
+<p>Un error es información sobre la diferencia entre:</p>
+<pre><code class="language-text">lo que pensábamos que hacía el programa</code></pre>
+<p>y:</p>
+<pre><code class="language-text">lo que realmente hace</code></pre>
+<p><strong>Depurar consiste en encontrar y comprender esa diferencia.</strong></p></section>
+  </main>
+</div>
+
+<footer>
+  Iniciación a la Programación · Curso 2026-27 · Guillermo Torres
+</footer>
+
+</body>
+</html>
